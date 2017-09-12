@@ -9,11 +9,139 @@
 	<link href="https://fonts.googleapis.com/css?family=Josefin+Slab" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Forum" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Cabin+Sketch" rel="stylesheet">
-	
-	
+	<link href="https://fonts.googleapis.com/css?family=Cabin+Sketch" rel="stylesheet"
+
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	 <style>
+	 /*loader part*/
+	 
+	 body {
+  background-color: #eee;
+}
+
+.showbox {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 5%;
+}
+
+.loadr {
+  position: relative;
+  margin: 0 auto;
+  width: 125px;
+}
+.loadr:before {
+  content: '';
+  display: block;
+  padding-top: 500px;
+}
+
+.circular {
+  -webkit-animation: rotate 4s linear infinite;
+          animation: rotate 4s linear infinite;
+  height: 100%;
+  -webkit-transform-origin: center center;
+          transform-origin: center center;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.path {
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+  -webkit-animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+          animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+  stroke-linecap: round;
+}
+
+@-webkit-keyframes rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate {
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35px;
+  }
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124px;
+  }
+}
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35px;
+  }
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124px;
+  }
+}
+@-webkit-keyframes color {
+  100%,
+  0% {
+    stroke: #d62d20;
+  }
+  40% {
+    stroke: #0057e7;
+  }
+  66% {
+    stroke: #008744;
+  }
+  80%,
+  90% {
+    stroke: #ffa700;
+  }
+}
+@keyframes color {
+  100%,
+  0% {
+    stroke: #d62d20;
+  }
+  40% {
+    stroke: #0057e7;
+  }
+  66% {
+    stroke: #008744;
+  }
+  80%,
+  90% {
+    stroke: #ffa700;
+  }
+}
+ 
+	/*header part */
+	#myDiv {
+        display: none;
+        text-align: center;
+  
+}
        .headr 
 	      {
 		     min-height:80px;
@@ -136,7 +264,7 @@
   
   font-size: 2em;
 
-	animation-duration: 20s;
+	animation-duration: 25s;
 	animation-timing-function: ease-in-out;
 	animation-iteration-count: infinite;
 }
@@ -154,21 +282,21 @@
 }
 
 @keyframes anim-1 {
-	0%, 8.3% { left: -30%; opacity: 0; }
-  8.3%,25% { left: 25%; opacity: 1; }
-  33.33%, 100% { left: 50%; opacity: 0; }
+	0%, 8.3% { left: -10%; opacity: 0; }
+  8.3%,25% { left: 15%; opacity: 1; }
+  33.33%, 100% { left: 30%; opacity: 0; }
 }
 
 @keyframes anim-2 {
-	0%, 33.33% { left: -30%; opacity: 0; }
-  41.63%, 58.29% { left: 25%; opacity: 1; }
-  66.66%, 100% { left: 50%; opacity: 0; }
+	0%, 33.33% { left: -10%; opacity: 0; }
+  41.63%, 58.29% { left: 15%; opacity: 1; }
+  66.66%, 100% { left: 30%; opacity: 0; }
 }
 
 @keyframes anim-3 {
-	0%, 66.66% { left: -30%; opacity: 0; }
-  74.96%, 91.62% { left: 25%; opacity: 1; }
-  100% { left: 50%; opacity: 0; }
+	0%, 66.66% { left: -10%; opacity: 0; }
+  74.96%, 91.62% { left: 15%; opacity: 1; }
+  100% { left: 30%; opacity: 0; }
 }
  /*{
   
@@ -241,11 +369,37 @@
 	}
 		
       </style>
+	  
+	  <script>
+	    var myVar;
+
+					function myFunction() {
+						myVar = setTimeout(showPage, 3000);
+					}
+
+					function showPage() {
+					  document.getElementById("loader").style.display = "none";
+					  document.getElementById("myDiv").style.display = "block";
+					}
+
+	  </script>
 	 
 	 
   </head>
-  <body>
- 
+  <body onload="myFunction()" style="margin:0;">
+   <div id="loader"> 
+    <div class="showbox">
+  <div class="loadr">
+    <svg class="circular" viewBox="25 25 50 50">
+      <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+    </svg>
+  </div>
+</div>
+   
+   </div>
+        
+        <div style="display:none;" id="myDiv" class="animate-bottom">
+
   
     <header>
     
